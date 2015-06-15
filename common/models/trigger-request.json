@@ -1,0 +1,22 @@
+{
+  "name": "TriggerRequest",
+  "base": "Model",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "timeout": {
+      "type": "number",
+      "required": true
+    },
+    "count": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": []
+}
