@@ -4,7 +4,7 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
-    "dist": "gulp build && slc start"
+    "prepublish": "gulp build"
   },
   "dependencies": {
     "angular-browserify": "0.0.1",
