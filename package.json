@@ -7,10 +7,13 @@
     "prepublish": "gulp build"
   },
   "dependencies": {
+    "angular-bootstrap": "^0.12.0",
+    "angular-bootstrap-npm": "^0.13.0",
     "angular-browserify": "0.0.1",
     "browserify": "^10.2.4",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
+    "d3-browserify": "^3.4.12",
     "errorhandler": "^1.1.1",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",

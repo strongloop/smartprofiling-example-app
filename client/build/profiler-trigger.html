@@ -9,7 +9,10 @@
     <input type='number' id='count' ng-model='count'>
   </p>
 
-  <button ng-click="triggerProfiler(timeout, count)">
-    Trigger
-  </button>
+  <h3>Result</h3>
+  <button ng-click="startTest()" ng-show="!active">Start</button>
+  <button ng-click="stopTest()" ng-show="active">Stop</button>
+  <div>{{ responseCount }} / {{ requestCount }}</div>
+  </hr>
+
 </form>

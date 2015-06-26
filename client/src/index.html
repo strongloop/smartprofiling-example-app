@@ -7,11 +7,23 @@
         display: inline-block;
         width: 5rem;
       }
+      .line {
+        fill: none;
+        stroke: steelblue;
+        stroke-width: 1.5px;
+      }
     </style>
+    <link type="text/css" href="styles.css" rel="stylesheet">
   </head>
   <body ng-app="smartProfilerDemo">
     <h1>StrongLoop Smart Profiling Demo</h1>
-    <sl-profiler-trigger>
-    </sl-profiler-trigger>
+    <div ng-controller='ProfilerDemoController'>
+      <h2>Test</h2>
+      <sl-profiler-trigger on-update="updateData(data)">
+      </sl-profiler-trigger>
+      <h2>Metrics</h2>
+      <sl-profiler-chart data='data'>
+      </sl-profiler-chart>
+    </div>
   </body>
 </html>
