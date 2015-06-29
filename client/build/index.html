@@ -3,6 +3,10 @@
   <head>
     <script src="js/bundle.js"></script>
     <style>
+      .chart-area {
+        border: 1px solid black;
+        height: 250px;
+      }
       label {
         display: inline-block;
         width: 5rem;
@@ -19,11 +23,10 @@
     <h1>StrongLoop Smart Profiling Demo</h1>
     <div ng-controller='ProfilerDemoController'>
       <h2>Test</h2>
-      <sl-profiler-trigger on-update="updateData(data)">
-      </sl-profiler-trigger>
-      <h2>Metrics</h2>
       <sl-profiler-chart data='data'>
       </sl-profiler-chart>
+      <sl-profiler-trigger on-update="updateData(data)">
+      </sl-profiler-trigger>
     </div>
   </body>
 </html>

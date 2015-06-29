@@ -19,6 +19,14 @@ module.exports = function() {
 
       $scope.startTest = function() {
         $scope.tests = [];
+
+        for (var i = 0; i < 100; ++i) {
+          $scope.tests.push({
+            index: i,
+            result: 0
+          });
+        }
+
         $scope.active = true;
       };
 
@@ -32,7 +40,6 @@ module.exports = function() {
 
         var tick = function() {
           var startTime = 0;
-          $scope.requestCount += 1;
 
           startTime = performance.now();
           ProfilerService.trigger($scope.timeout)
@@ -41,12 +48,11 @@ module.exports = function() {
               $scope.stopTest();
             })
             .then(function(response) {
+              $scope.tests.shift();
               $scope.tests.push({
                 index: $scope.tests.length,
                 result: performance.now() - startTime
               });
-
-              $scope.responseCount += 1;
 
               if ($scope.active) {
                 $timeout(tick, 0);
