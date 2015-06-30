@@ -51,7 +51,7 @@ module.exports = function() {
               $scope.tests.shift();
               $scope.tests.push({
                 index: $scope.tests.length,
-                result: performance.now() - startTime
+                result: response.data.msg.workAmount
               });
 
               if ($scope.active) {
