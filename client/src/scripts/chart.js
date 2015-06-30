@@ -11,6 +11,10 @@ module.exports = function() {
     link: function($scope, elem) {
       var height = elem.prop('offsetHeight');
       var width = elem.prop('offsetWidth');
+      var yScale = d3.scale.linear()
+        .range([height, 0])
+        .domain([0, 500]);
+
       var xScale = d3.scale.linear()
         .range([0, width])
         .domain([0, 99]);
@@ -22,7 +26,7 @@ module.exports = function() {
 
       var line = d3.svg.line()
         .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return d.result; });
+        .y(function(d) { return yScale(d.result); });
 
       var path = svg.append('path')
         .datum([])
