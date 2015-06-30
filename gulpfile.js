@@ -16,7 +16,7 @@ var DST_PATH = 'client/build/js';
 var STATIC_FILES = ['client/src/*.html', 'client/src/templates/*.html'];
 var SCRIPT_FILES = ['client/src/scripts/*.js'];
 
-gulp.task('build', function() {
+gulp.task('process', function() {
   gulp.src(WEBAPP_SRC)
     .pipe(browserify(BROWSERIFY_CONFIG))
     .pipe(concat(BUNDLE))
@@ -27,6 +27,8 @@ gulp.task('copy', function() {
   gulp.src(STATIC_FILES)
     .pipe(gulp.dest('client/build'));
 });
+
+gulp.task('build', ['process', 'copy']);
 
 gulp.task('watch', function() {
   gulp.watch(SCRIPT_FILES, ['build']);
