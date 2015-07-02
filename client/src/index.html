@@ -41,8 +41,15 @@
     </div>
     <div class='container' ng-controller='ProfilerDemoController'>
       <h2>Smart Profiler Demo</h2>
+      <h3>Operations per Request</h3>
       <sl-profiler-chart data='data'>
       </sl-profiler-chart>
+      <hr>
+        Click start to begin demonstration. Requests will be sent to the PM,
+        and be processed until the timeout defined below is exceeded. The number
+        of operations succesfully processed before the timeout is exceeded will
+        be shown on the graph above.
+      <hr>
       <sl-profiler-trigger on-update="updateData(data)">
       </sl-profiler-trigger>
     </div>
