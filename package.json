@@ -20,7 +20,7 @@
     "gulp-concat": "^2.5.2",
     "gulp-watch": "^4.2.4",
     "loopback": "^2.14.0",
-    "loopback-boot": "^2.8.5",
+    "loopback-boot": "^2.8.2",
     "loopback-datasource-juggler": "^2.19.0",
     "serve-favicon": "^2.0.1"
   },
