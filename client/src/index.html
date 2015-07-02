@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="js/bundle.js"></script>
+    <link href="//bootswatch.com/cosmo/bootstrap.min.css" rel="stylesheet"/>
     <style>
       .chart-area {
         border: 1px solid black;
@@ -9,7 +10,9 @@
       }
       label {
         display: inline-block;
-        width: 5rem;
+      }
+      h2 {
+        padding-top: 5rem;
       }
       .line {
         fill: none;
@@ -22,13 +25,22 @@
         stroke: #000;
         shape-rendering: crispEdges;
       }
+      .trigger-controls {
+        margin-top: 1.0rem;
+      }
     </style>
     <link type="text/css" href="styles.css" rel="stylesheet">
   </head>
   <body ng-app="smartProfilerDemo">
-    <h1>StrongLoop Smart Profiling Demo</h1>
-    <div ng-controller='ProfilerDemoController'>
-      <h2>Test</h2>
+    <div class='navbar navbar-default navbar-fixed-top'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <a href='#' class='navbar-brand'>StrongLoop</a>
+        </div>
+      </div>
+    </div>
+    <div class='container' ng-controller='ProfilerDemoController'>
+      <h2>Smart Profiler Demo</h2>
       <sl-profiler-chart data='data'>
       </sl-profiler-chart>
       <sl-profiler-trigger on-update="updateData(data)">

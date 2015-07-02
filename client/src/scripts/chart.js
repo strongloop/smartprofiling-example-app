@@ -9,40 +9,53 @@ module.exports = function() {
     template: '<div class="chart-area"></div>',
     replace: true,
     link: function($scope, elem) {
-      var height = elem.prop('offsetHeight');
-      var width = elem.prop('offsetWidth');
-      var yScale = d3.scale.linear()
-        .range([height, 0])
-        .domain([0, 500]);
-
-      var yAxis = d3.svg.axis()
-        .scale(yScale)
-        .orient('right');
-
-      var xScale = d3.scale.linear()
-        .range([0, width])
-        .domain([0, 99]);
-
       var svg = d3.select(elem[0])
-        .append('svg')
-          .attr('height', height)
+        .append('svg');
+
+      var yScale = d3.scale.linear();
+      var xScale = d3.scale.linear();
+      var yAxis = d3.svg.axis();
+      var line, path, yScaleGroup;
+
+      function setupChart() {
+        var height = elem.prop('offsetHeight');
+        var width = elem.prop('offsetWidth');
+
+        svg.attr('height', height)
           .attr('width', width);
 
-      var yScaleGroup = svg.append('g')
-        .attr('class', 'y axis')
-        .attr('transform', 'translate(' + (width - 50) + ', 0)')
-        .call(yAxis);
+        yScale.range([height, 0]);
 
-      var line = d3.svg.line()
-        .x(function(d, i) { return xScale(i); })
-        .y(function(d) { return yScale(d.result); });
+        xScale.range([0, width])
+          .domain([0, 99]);
 
-      var path = svg.append('path')
-        .datum([])
-        .attr('class', 'line')
-        .attr('d', line);
+        yAxis.scale(yScale)
+          .orient('right');
+
+        yScaleGroup = svg.append('g')
+          .attr('class', 'y axis')
+          .attr('transform', 'translate(' + (width - 50) + ', 0)')
+          .call(yAxis);
+
+        line = d3.svg.line()
+          .x(function(d, i) { return xScale(i); })
+          .y(function(d) { return yScale(d.result); });
+
+        path = svg.append('path')
+          .datum([])
+          .attr('class', 'line')
+          .attr('d', line);
+      }
+
+      window.addEventListener('resize', function(event) {
+        setupChart();
+      });
 
       $scope.$watch('data', function(newVal) {
+        if (!yScaleGroup) {
+          setupChart();
+        }
+        
         yScale.domain(d3.extent(newVal, function(d) {
           return d.result;
         })).nice();
