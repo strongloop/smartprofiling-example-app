@@ -4,16 +4,14 @@
   "main": "server/server.js",
   "scripts": {
     "pretest": "jshint .",
-    "prepublish": "gulp build"
+    "prepublish": "gulp --silent"
   },
   "dependencies": {
-    "angular-bootstrap": "^0.12.0",
     "angular-bootstrap-npm": "^0.13.0",
     "angular-browserify": "0.0.1",
-    "browserify": "^10.2.4",
+    "d3-browserify": "^3.4.12",
     "compression": "^1.0.3",
     "cors": "^2.5.2",
-    "d3-browserify": "^3.4.12",
     "errorhandler": "^1.1.1",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
@@ -38,5 +36,22 @@
     "type": "",
     "url": ""
   },
-  "description": "smartprofiling-example-app"
+  "description": "smartprofiling-example-app",
+  "bundleDependencies": [
+    "angular-bootstrap-npm",
+    "angular-browserify",
+    "d3-browserify",
+    "compression",
+    "cors",
+    "errorhandler",
+    "gulp",
+    "gulp-browserify",
+    "gulp-concat",
+    "gulp-watch",
+    "loopback",
+    "loopback-boot",
+    "loopback-datasource-juggler",
+    "loopback-explorer",
+    "serve-favicon"
+  ]
 }

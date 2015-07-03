@@ -31,3 +31,5 @@ gulp.task('watch', function() {
   gulp.watch(SCRIPT_FILES, ['build']);
   gulp.watch(STATIC_FILES, ['copy']);
 });
+
+gulp.task('default', ['build']);
