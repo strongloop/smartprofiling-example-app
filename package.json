@@ -30,11 +30,11 @@
   },
   "license": {
     "name": "StrongLoop",
-    "url": "https://github.com/strongloop/strong-gateway-demo/blob/master/LICENSE"
+    "url": "https://github.com/strongloop/smartprofiling-demo/blob/master/LICENSE"
   },
   "repository": {
-    "type": "",
-    "url": ""
+    "type": "git",
+    "url": "git://github.com/strongloop/smartprofiling-demo.git"
   },
   "description": "smartprofiling-example-app",
   "bundleDependencies": [
