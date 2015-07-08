@@ -1,56 +1,67 @@
 >**A [StrongLoop license](#obtain-a-strongloop-license) is required for this
 beta demo.**
 
-# LoopBack Smart Profiling Demo
+# LoopBack Smart Profiling demo
 
-This application is for demonstrating Smart Profiling in StrongLoop Arc.
-
-## Overview
-
-This application is designed to help demonstrate the Smart Profiling feature of
-StrongLoop Arc, and illustrate its benefits. The application will send requests
-to the PM with a user-defined timeout value.
-
-On the server side, the requests will be processed until the specified timeout
-is exceeded. The number of successfully completed operations will be returned to
-the client, and shown on a graph in the demo application.
+This application demonstrates Smart Profiling in StrongLoop Arc, and illustrates its benefits. 
+The application sends requests to StrongLoop Process Manager (PM) with a user-defined timeout value.
+The application includes a server and a client.
+The server application processes requests until the specified timeout is exceeded. 
+It then returns the number of successfully completed operations to the client, which displays a 
+graph of the values.
 
 ## Requirements
 
-### Minimum Versions
+### Minimum versions
 
 TBD
 
 ### StrongLoop license
 
-The StrongArc Smart Profiling is currently under private beta. Please contact
-sales@strongloop.com to have a license provisioned. After receiving confirmation
-that a license has been provisioned, run `slc arc --licenses` to retrieve the new
-license key
+Smart Profiling is currently in private beta release.  To get a license, please contact
+sales@strongloop.com. After receiving confirmation
+that a license has been provisioned, run `slc arc --licenses` to retrieve the new license key.
 
->See ["Managing your licenses"](http://docs.strongloop.com/display/SL/Managing+your+licenses).
+For more information, see ["Managing your licenses"](http://docs.strongloop.com/display/SL/Managing+your+licenses).
 
 ## Setup
 
-### Setting up Strong PM
+### Setting up StrongLoop PM
 
-In order to use Smart Profiling, your application must be running inside of a
-StrongLoop PM instance.
+To use Smart Profiling, you must run the application with StrongLoop PM.
 
-For more information about StrongLoop PM, [http://strong-pm.io](http://strong-pm.io)
+If you want to run both Arc and StrongLoop PM on the Linux system, skip this step.
+
+If your Linux system is different than the system where you are running Arc (which is a typical setup), 
+then you need to install StrongLoop PM on the Linux system:
+```
+$ npm install -g strong-pm
+```
+
+In a real production setup, you would run StrongLoop PM as a persistent service.
+For purposes of this demo, though, you're going to run PM as a transient process, as follows:
+```
+$ sl-pm
+```
+By default, PM will listen on port 8701.
+
+For more information, see [Setting up a production host](http://docs.strongloop.com/display/SLC/Setting+up+a+production+host).
 
 #### Supported Platforms
 
-Smart profiling is currently only supported on StrongLoop PM deployments running
-on Linux systems.
+Smart profiling is currently only supported for StrongLoop PM on Linux systems.
 
-### Deploy the Application
+### Build and deploy the application
 
-First you'll need to download the application
+Download and build the application
 
 ```
-slc build
+$ git clone https://github.com/strongloop/smartprofiling-demo.git
+$ cd smartprofiling-demo
+$ slc build
 ```
+
+Then deploy the application to Process Manager:
 
 ```
 slc deploy http://<pm server>:<pm port>/
@@ -61,9 +72,9 @@ slc deploy http://<pm server>:<pm port>/
 In your web browser, navigate to application running on the PM. Typically this
 will be at: `http://<pm host>:3001/`.
 
-### Start StrongArc
+### Start StrongLoop Arc
 
-From inside the smartprofiling-demo application directory, run
+From inside the `smartprofiling-demo` application directory, run
 
 ```
 slc arc
