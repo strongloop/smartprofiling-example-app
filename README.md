@@ -56,8 +56,6 @@ slc build
 slc deploy http://<pm server>:<pm port>/
 ```
 
-It's recommended for this demo, that you only run one worker instance on the PM.
-
 ### Connect to the application
 
 In your web browser, navigate to application running on the PM. Typically this
@@ -109,17 +107,14 @@ profiler timeout) a specified number of times.
 The value for these options is highly depended on the application that is being
 profiled. For this demo:
 
-Set "timeout" to "50 ms"
-Set "cycles" to "10".
-
-### Start the Profiler
-
-Select the all PIDs from the PID list, and click "start" on the profiler.
-
-> Selecting multiple PIDs for profiling is only available when using Smart
-> Profiling
+Set "Threshold" to "50 ms"
+Set "Max Cycles" to "10".
 
 ### Running the Demo Application
+
+It's recommended for this demo, that you only run one worker instance on the PM.
+
+#### Start the demonstration application
 
 Navigate to the Demo application. Set the timeout to "50" and click "Start"
 
@@ -127,7 +122,35 @@ The application will start sending requests, which will process for the time
 specified. The amount of work done before the timeout specified will be shown
 on the graph.
 
-Increase the timeout value to "150"
+#### Start the Profiler in Full Profiler Mode
+
+In Arc, navigate to the profiler module and connect to your PM host. Select the
+PID from the PID list. Ensure that the CPU profiler settings are set to
+"Full Profiling" and click "Start" on the profiler.
+
+> On the demo application you should see the graph drop after a few seconds.
+> This is due to the increased overhead caused by full profiling.
+
+After a short while, you can click "Stop" on the profiler in Arc to terminate
+the profile.
+
+#### Start the Profiler in Smart Profiler Mode
+
+In Arc, navigate to the profiler module and connect to your PM host. Select the
+PID from the PID list. Ensure that the CPU profiler settings are set to
+"Smart Profiling" and set "Threshold" to 100, and "Max Cycles" to 10. Apply the
+settings and click "Start" on the profiler.
+
+> In the demo application you'll see that the graph does not significantly
+> change. This is because of the decreased overhead of using smart profiling.
+
+After a few minutes, increase the timeout in the demo app to 100. This will
+cause the demo app to start exceeding the smart profiler timeout. After a few
+seconds, Arc will automatically stop the profiler. This is because the "Max
+Cycles" would have been exceeded.
+
+You can view the CPU profiles by clicking them on in the menu on the left side of
+the profiler.
 
 ---
 
