@@ -1,9 +1,9 @@
 >**A [StrongLoop license](#obtain-a-strongloop-license) is required for this
 beta demo.**
 
-# LoopBack Smart Profiling demo
+# LoopBack Smart Profiling example
 
-This application demonstrates Smart Profiling in StrongLoop Arc, and illustrates its benefits. 
+This application demonstrates Smart Profiling in StrongLoop Arc. 
 The application sends requests to StrongLoop Process Manager (PM) with a user-defined timeout value.
 The application includes a server and a client.
 The server application processes requests until the specified timeout is exceeded. 
@@ -11,6 +11,8 @@ It then returns the number of successfully completed operations to the client, w
 graph of the values.
 
 ## Requirements
+
+**NOTE**: You'll need a Linux system on which to run StrongLoop PM.  Smart Profiling is supported only on Linux.
 
 ### Minimum versions
 
@@ -28,106 +30,105 @@ For more information, see ["Managing your licenses"](http://docs.strongloop.com/
 
 ### Setting up StrongLoop PM
 
-To use Smart Profiling, you must run the application with StrongLoop PM.
+**NOTE**: Smart profiling is supported only for StrongLoop PM on Linux systems.
 
-If you want to run both Arc and StrongLoop PM on the Linux system, skip this step.
+#### Install PM
 
-If your Linux system is different than the system where you are running Arc (which is a typical setup), 
+If you're going to run both Arc and StrongLoop PM on the same Linux system, skip this step.
+
+If your Linux system is different than the system where you are running Arc (a typical setup), 
 then you need to install StrongLoop PM on the Linux system:
+
 ```
 $ npm install -g strong-pm
 ```
 
+#### Run PM
+
+On the Linux system, you're going to run PM as a transient process.
 In a real production setup, you would run StrongLoop PM as a persistent service.
-For purposes of this demo, though, you're going to run PM as a transient process, as follows:
+For more information, see [Setting up a production host](http://docs.strongloop.com/display/SLC/Setting+up+a+production+host).
+
+Enter this command:
 ```
 $ sl-pm
 ```
 By default, PM will listen on port 8701.
 
-For more information, see [Setting up a production host](http://docs.strongloop.com/display/SLC/Setting+up+a+production+host).
+### Get the application
 
-#### Supported Platforms
-
-Smart profiling is currently only supported for StrongLoop PM on Linux systems.
-
-### Build and deploy the application
-
-Download and build the application
+On the system running Arc, download the application.  In a console, enter this command:
 
 ```
-$ git clone https://github.com/strongloop/smartprofiling-demo.git
-$ cd smartprofiling-demo
-$ slc build
+$ git clone https://github.com/strongloop/smartprofiling-example-app.git
 ```
-
-Then deploy the application to Process Manager:
-
-```
-slc deploy http://<pm server>:<pm port>/
-```
-
-### Connect to the application
-
-In your web browser, navigate to application running on the PM. Typically this
-will be at: `http://<pm host>:3001/`.
 
 ### Start StrongLoop Arc
 
-From inside the `smartprofiling-demo` application directory, run
+In the application root directory, start Arc:
 
 ```
-slc arc
+$ cd smartprofiling-example-app
+$ slc arc
 ```
 
-## Running the Demonstration
+StrongLoop Arc will open in your default web browser.
 
-Enter the Profiler module in Strong Arc, by clicking the profiler button on the
-Strong Arc landing page.
+### Build and deploy the application
 
-On the Profiler page, enter the host and port information for you Strong PM, and
-click 'load'.
+1. In Arc, click **Build & Deploy** to go to the Build & Deploy module.
+1. At the top of the page, make sure **Tar file** is selected as the build type.  Click **Build**.  After a while, you will see the message `Successfully built using tar file`.
+1. Under **Deploy tar file**:
+  * **Fully qualified path to archive**: Enter the full path to the tar file; for example, `/Users/fred/smartprofiling-example-app-1.0.0.tgz`.  
+  * **Hostname**: Domain name or IP address and port number (default 8701) of the server running PM.
+  * **Processes**: Leave the default, 1. 
+  * Click **Deploy**.
+  * After a while, you'll see the message `Successfully deployed using tar file`.
+  * Confirm that the application is running: In a web browser, load the application,by default at: `http://<pm host>:3001/`.  You should see the app page.
+  
+> NOTE: For this demo, make sure you run the application with one worker process to avoid any confusion.
 
-### Setting up the Smart Profiler Settings
+### Configure license
 
-You can configure the Smart Profiler settings by clicking the "Profiler Settings"
-option the will appear beside the PID list in the Arc profiler.
+TBD.
 
-> If you do not see the profiler settings option, then the Strong PM does not
-> support all the options required for using Smart Profiling from within Arc.
-> Please check requirement section and confirm that StrongLoop PM is running
-> the correct version.
+### Start Smart Profiling 
 
-In the profiler settings window, there are two options:
+In Arc:
 
-#### Timeout
+1. Click **Profiler** to go to the Arc Profiler module.
+2. On the Profiler page, enter the host name and port number (8701 by default) where StrongLoop PM is running
+3. Click 'Load'.  Arc will display the process ID of the application.
+4. Click the grey box containing the process ID; it will turn blue.
+5. Click **Profile settings (full)**.  You'll see the Profiler Settings dialog.
+6. In the Profiler Settings dialog, click **Smart**.  
+> If you do not see the profiler settings option, then your StrongLoop PM does not
+> support all the options required for Smart Profiling.
+> Please ensure you have the correct version, have the necessary license, and have pushed it to PM.
+Enter the following values: `Event Loop Execution Threshold` - 50 and `Max Samples` - keep the default, 10.
+7. Click **OK**.
 
-This value is the minimum amount of time the process which is profiling needs
+There are two Smart Profiling settings: 
+* **Timeout** - minimum amount of time the process which is profiling needs
 spend processing a request before it begins recording profiling data for that
 request. Increasing this value will reduce the overhead of running profiling,
 my limiting the amount of time the profiling is running on the processes.
-
-#### Max Cycles
-
-The profile data for a process will not be available until after profiling has
+* **Max Cycles** - The profile data for a process will not be available until after profiling has
 been turned off for that processes. Profiling can either be manually turned off
 (by selecting the PID, and clicking the 'stop' button) or it can be
 automatically turned off after the profiler has triggered (by exceeding the
 profiler timeout) a specified number of times.
 
-The value for these options is highly depended on the application that is being
-profiled. For this demo:
+In general, the values for these settings depend on the application you're profililng.  For this demo, use:
 
-Set "Threshold" to "50 ms"
-Set "Max Cycles" to "10".
+- Threshold: 50 ms
+- Max Cycles: 10
 
-### Running the Demo Application
+#### Start the application
 
-It's recommended for this demo, that you only run one worker instance on the PM.
+Navigate to the Demo application. 
 
-#### Start the demonstration application
-
-Navigate to the Demo application. Set the timeout to "50" and click "Start"
+For **Timeout**, enter "50" then click "Start".
 
 The application will start sending requests, which will process for the time
 specified. The amount of work done before the timeout specified will be shown
@@ -142,7 +143,7 @@ PID from the PID list. Ensure that the CPU profiler settings are set to
 > On the demo application you should see the graph drop after a few seconds.
 > This is due to the increased overhead caused by full profiling.
 
-After a short while, you can click "Stop" on the profiler in Arc to terminate
+After few seconds click "Stop" on the profiler in Arc to terminate
 the profile.
 
 #### Start the Profiler in Smart Profiler Mode
@@ -162,7 +163,3 @@ Cycles" would have been exceeded.
 
 You can view the CPU profiles by clicking them on in the menu on the left side of
 the profiler.
-
----
-
-[Other LoopBack demos](https://github.com/strongloop/loopback-demo)
