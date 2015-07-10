@@ -94,9 +94,12 @@ In the upper right of the window, click the icon and choose **Licenses**:
 
 ![Licenses](http://docs.strongloop.com/download/attachments/6719049/licenses.png?version=3&modificationDate=1436561496670&api=v2)
 
-Ensure that there is a check next to **Smart Profiling**
+Arc will display the **Licenses** page.  It may take a moment to appear.
+Ensure that there is a check next to **Smart Profiling**.
 
-Then, push the license to your StrongLoop Process Manager:
+**NOTE**: If you are running Arc and StrongLoop PM both on the same Linux system, you can skip this step.
+
+Push the license to your StrongLoop Process Manager:
 
 1. Click **Process Manager** to display the Process Manager module.
 2. Click **Add PM Host**.
