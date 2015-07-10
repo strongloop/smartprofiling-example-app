@@ -20,13 +20,11 @@ TBD
 To get a license for Smart Profiling, please contact sales@strongloop.com.  After receiving confirmation
 that StrongLoop has provisioned a license for you, follow the procedure below.
 
-## Setup
-
-### Setting up StrongLoop PM
+## Set up StrongLoop PM
 
 **NOTE**: Smart profiling is supported only for applications running on Linux systems.  You can generate and view profiles on any system running StrongLoop Arc, but StrongLoop PM and the application _must_ run on a Linux system.
 
-#### Install PM
+### Install PM
 
 **NOTE**: If you're going to run both Arc and StrongLoop PM on one Linux system, skip this step.
 
@@ -37,7 +35,7 @@ then install StrongLoop PM on the Linux system:
 $ npm install -g strong-pm
 ```
 
-#### Run PM
+### Run PM
 
 On the Linux system, you're going to run PM as a transient process.
 In a real production setup, you would run StrongLoop PM as a persistent service.
@@ -49,6 +47,8 @@ $ sl-pm
 ```
 
 This will start PM, listening by default on port 8701.
+
+## Use Arc to build, deploy, and profile 
 
 ### Get the application
 
