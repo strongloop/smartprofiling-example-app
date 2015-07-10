@@ -121,20 +121,6 @@ The application will start sending requests, which will process for the time
 specified. The amount of work done before the timeout specified will be shown
 on the graph.
 
-### Generate CPU profiles (full profiling)
-
-1. Click **Profiler** to go to the Arc Profiler module.
-2. Under **Hostname**, enter the host name and port number (8701 by default) where StrongLoop PM is running.
-3. Click **Load**.  Arc will display the process ID of the application.
-4. Click the grey box containing the process ID; it will turn blue.
-5.  Ensure that the CPU profiler settings are set to "Full Profiling" and click "Start" on the profiler.
-
-> On the demo application you should see the graph drop after a few seconds.
-> This is due to the increased overhead caused by full profiling.
-
-After few seconds click **Stop** on the profiler in Arc to terminate
-the profile.
-
 ### Start Smart Profiling 
 
 In Arc:
@@ -145,22 +131,21 @@ In Arc:
 4. Click the grey box containing the process ID; it will turn blue.
 5. Click **Profile settings (full)**.  You'll see the Profiler Settings dialog.
 6. In the Profiler Settings dialog, click **Smart**.  
-> If you do not see the profiler settings option, then your StrongLoop PM does not
-> support all the options required for Smart Profiling.
-> Ensure you have the correct version and the necessary license, and have pushed the license to PM.
-Enter the following values: `Event Loop Execution Threshold` - 100 and `Max Samples` - keep the default, 10.
-7. Click **OK**.
+ * If you do not see the Smart Profile settings option, ensure you are running PM on Linux, 
+   have the correct version of PM, the necessary license, and have pushed the license to PM.
+7. Enter the following values: `Event Loop Execution Threshold` - 50 and `Max Samples` - keep the default, 10.
+8. Click **OK**.
 
 > In the demo application you'll see that the graph does not significantly
-> change. This is because of the decreased overhead of using smart profiling.
+> change. This is because of the decreased overhead of using Smart Profiling 
+> versus standard (full) profiling.
 
 After a few minutes, increase the timeout in the demo app to 100. This will
 cause the demo app to start exceeding the smart profiler timeout. After a few
 seconds, Arc will automatically stop the profiler. This is because the "Max
 Cycles" would have been exceeded.
 
-You can view the CPU profiles by clicking them on in the menu on the left side of
-the profiler.
+To view CPU profiles, click on them in the list on the left side of the page.
 
 There are two Smart Profiling settings: 
 * **Timeout** - Minimum time the process which is being profiled needs to
