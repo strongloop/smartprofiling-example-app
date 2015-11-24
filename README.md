@@ -13,13 +13,9 @@ graph of the values.
 
 ### Minimum versions
 
-Be sure to do `npm install -g strongloop` to ensure you have the latest version of StrongLoop Arc.
+Be sure to do `npm install -g strongloop` to ensure you have the latest version of StrongLoop Arc.  Use `slc -v` to determine your versions.
 
-To use Smart Profiling in Arc, you must have the following versions or higher:
-- StrongLoop Arc v. 1.6.6
-- StrongLoop PM v. 5.0.36
-
-Use `slc -v` to determine your versions.
+See [Smart profiling with Arc](https://docs.strongloop.com/display/SLC/Smart+profiling+with+Arc) for minimum version requirements.
 
 ### StrongLoop license
 
