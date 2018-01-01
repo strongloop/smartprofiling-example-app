@@ -13,7 +13,7 @@
     "compression": "^1.0.3",
     "cors": "^2.5.2",
     "errorhandler": "^1.1.1",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",
     "gulp-watch": "^4.2.4",
