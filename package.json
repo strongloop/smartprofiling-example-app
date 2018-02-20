@@ -16,8 +16,8 @@
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.5.2",
-    "gulp-watch": "^4.2.4",
-    "loopback": "^2.14.0",
+    "gulp-watch": "^5.0.0",
+    "loopback": "^3.0.0",
     "loopback-boot": "^2.8.2",
     "loopback-datasource-juggler": "^2.19.0",
     "serve-favicon": "^2.0.1"
